@@ -73,17 +73,17 @@ const RecommendationComponent = () => {
 
 	return (
 		<div className='bg-black min-h-screen text-white'>
-			<div className='mx-auto container px-4 py-8 h-full'>
+			<div className='mx-auto container px-4 h-full'>
 				<Navbar />
 
 				{/* Search Section */}
-				<div className='flex items-center justify-center mb-8'>
+				<div className='flex items-center justify-center mb-10'>
 					<input
 						type='text'
-						placeholder='Enter movie name or ID'
+						placeholder='Enter movie name'
 						value={movieName}
 						onChange={(e) => setMovieName(e.target.value)}
-						className='p-2 rounded-lg bg-gray-700 text-white mr-4'
+						className='p-2 rounded-lg bg-gray-700 text-white mr-4 w-[40%]'
 					/>
 					<button
 						onClick={() => recommend(movieName)}

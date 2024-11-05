@@ -20,33 +20,44 @@ const Navbar = () => {
 				</Link>
 
 				{/* desktop navbar items */}
-				<div className='hidden sm:flex gap-2 items-center'>
-					<Link to='/' className='hover:underline' onClick={() => setContentType("movie")}>
+				<div className='hidden sm:flex gap-8 items-center'>
+					<Link to='/'  className='relative text-gray-300 font-medium text-lg hover:text-cyan-300 transition duration-200 before:content-[""] before:absolute before:left-0 before:bottom-0 before:w-full before:h-0.5 before:bg-cyan-300 before:scale-x-0 before:transition-transform before:duration-300 hover:before:scale-x-100'  onClick={() => setContentType("movie")}>
 						Movies
 					</Link>
-					<Link to='/' className='hover:underline' onClick={() => setContentType("tv")}>
+				
+				   <Link to='/'     className='relative text-gray-300 font-medium text-lg hover:text-cyan-300 transition duration-200 before:content-[""] before:absolute before:left-0 before:bottom-0 before:w-full before:h-0.5 before:bg-cyan-300 before:scale-x-0 before:transition-transform before:duration-300 hover:before:scale-x-100'  onClick={() => setContentType("tv")}>
 						Tv Shows
 					</Link>
-					<Link to='/history' className='hover:underline'>
+					
+					<Link to='/history'     className='relative text-gray-300 font-medium text-lg hover:text-cyan-300 transition duration-200 before:content-[""] before:absolute before:left-0 before:bottom-0 before:w-full before:h-0.5 before:bg-cyan-300 before:scale-x-0 before:transition-transform before:duration-300 hover:before:scale-x-100' >
 						Search History
 					</Link>
 
-					<Link to='/recommend' className='hover:underline'>
+					<Link to='/recommend'     className='relative text-gray-300 font-medium text-lg hover:text-cyan-300 transition duration-200 before:content-[""] before:absolute before:left-0 before:bottom-0 before:w-full before:h-0.5 before:bg-cyan-300 before:scale-x-0 before:transition-transform before:duration-300 hover:before:scale-x-100' >
 						Recommend
 					</Link>
 				</div>
 			</div>
 
-			<div className='flex gap-2 items-center z-50'>
-				<Link to={"/search"}>
-					<Search className='size-6 cursor-pointer' />
+			<div className='flex gap-4 items-center z-50'>
+				<Link to="/search" className='p-2 rounded hover:bg-gray-800 transition duration-200'>
+					<Search className='h-6 w-6 text-gray-300 cursor-pointer' />
 				</Link>
-				<img src={user.image} alt='Avatar' className='h-8 rounded cursor-pointer' />
-				<LogOut className='size-6 cursor-pointer' onClick={logout} />
+				
+				<Link to="/profile" className='relative'>
+					<img src={user.image} alt='Avatar' className='h-10 w-10 rounded-full border-2 border-gray-700 transition-transform duration-200 hover:scale-105 cursor-pointer' />
+				</Link>
+				
+				<button className='p-2 rounded hover:bg-gray-800 transition duration-200' onClick={logout} >
+					<LogOut className='h-6 w-6 text-gray-300 cursor-pointer' />
+				</button>
+				
 				<div className='sm:hidden'>
-					<Menu className='size-6 cursor-pointer' onClick={toggleMobileMenu} />
+					<Menu className='h-6 w-6 text-gray-300 cursor-pointer' onClick={toggleMobileMenu} />
 				</div>
 			</div>
+
+
 
 			{/* mobile navbar items */}
 			{isMobileMenuOpen && (
