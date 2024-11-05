@@ -30,6 +30,10 @@ const Navbar = () => {
 					<Link to='/history' className='hover:underline'>
 						Search History
 					</Link>
+
+					<Link to='/recommend' className='hover:underline'>
+						Recommend
+					</Link>
 				</div>
 			</div>
 

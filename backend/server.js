@@ -1,6 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
+import cors from "cors";  // Import cors
 
 import authRoutes from "./routes/auth.route.js";
 import movieRoutes from "./routes/movie.route.js";
@@ -16,23 +17,32 @@ const app = express();
 const PORT = ENV_VARS.PORT;
 const __dirname = path.resolve();
 
+// CORS configuration
+const corsOptions = {
+    origin: 'http://localhost:5173',  // Your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the methods you want to allow
+    credentials: true, // Allow credentials if needed
+};
+
+app.use(cors(corsOptions));  // Enable CORS with options
+
 app.use(express.json()); // will allow us to parse req.body
 app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/movie", protectRoute, movieRoutes);
+app.use("/api/v1/movie", movieRoutes);
 app.use("/api/v1/tv", protectRoute, tvRoutes);
 app.use("/api/v1/search", protectRoute, searchRoutes);
 
 if (ENV_VARS.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "/frontend/dist")));
+    app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
-	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-	});
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    });
 }
 
 app.listen(PORT, () => {
-	console.log("Server started at http://localhost:" + PORT);
-	connectDB();
+    console.log("Server started at http://localhost:" + PORT);
+    connectDB();
 });
