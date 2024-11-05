@@ -20,7 +20,8 @@ const RecommendationComponent = () => {
 	const recommend = async (movieTitle) => {
 		setLoading(true);
 		try {
-
+            
+			setMovieName(movieTitle);
 			const response = await axios.post("http://localhost:5001/recommend", {
 				movie_title: movieTitle
 			}, {
